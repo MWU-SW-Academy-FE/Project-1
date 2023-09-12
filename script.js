@@ -10,17 +10,26 @@ class Calculator {
     }
 
     onPressNumber(number) {
-        // TODO: validation, .이 먼저 눌리면 안되도록 조정
         // 계산 결과가 한타임 남아있도록 조치
         if(this.isOperated) {
             this.$currentPreview.textContent = ''
             this.isOperated = false
         }
-        this.$currentPreview.textContent += number
+        // validation: 올바르지 않은 데이터 형식 검사 후 값 입력
+        if(this.$currentPreview.textContent.length === 0){
+            if(number !== '.') this.$currentPreview.textContent += number
+        }
+        else if(this.$currentPreview.textContent.length === 1){
+            if(!(this.$currentPreview.textContent === '0' && number === '0')) 
+            this.$currentPreview.textContent += number
+        }
+        else{
+            if(!(this.$currentPreview.textContent.includes('.') && number === '.')) 
+            this.$currentPreview.textContent += number
+        }
     }
 
     // 사칙연산이 클릭되면 이전 텍스트에 해당 연산을 추가하여 올림, = 는 별도의 처리
-    // 도전 TODO: = 3개 이상의 숫자 연산 => 연속해서 사칙연산 입력 시 중첩되어 계산하도록 로직 생성
     onPressOperation(operation) {
         if(operation === '=') {
             this.onEqual()
@@ -37,6 +46,7 @@ class Calculator {
     onEqual() {
         const [a, operation] = this.$previousPreview.textContent.split(' ')
         const b = this.$currentPreview.textContent
+        // validation: 올바르지 않은 계산식 검사 후 계산 진행(0으로 나누기)
         if(operation === '+') {
             this.$currentPreview.textContent = Number(a) + Number(b)
         }
@@ -47,7 +57,7 @@ class Calculator {
             this.$currentPreview.textContent = Number(a) * Number(b)
         }
         if(operation === '÷') {
-            this.$currentPreview.textContent = Number(a) / Number(b)
+            b === '0' ? alert('0으로 나눌 수 없습니다!') : this.$currentPreview.textContent = Number(a) / Number(b)
         }
 
         this.$previousPreview.textContent = `
