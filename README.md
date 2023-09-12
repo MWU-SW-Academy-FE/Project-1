@@ -3,7 +3,7 @@
 ### 1주차
 - [x] 기본 UI 완성
 - [x] data 속성 추가
-- [ ] calculator class 만들기
+- [x] calculator class 만들기
 - [ ] 계산기 기능 관련 DOM 셋팅
 - [ ] 숫자 버튼 기능(onPressNumber) 구현
 
