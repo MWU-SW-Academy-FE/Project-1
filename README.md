@@ -9,7 +9,7 @@
 
 ### 2주차
 - [x] 사칙연산 버튼 기능(onPressOperation) 구현
-- [ ] onEqual 기능 구현
+- [x] onEqual 기능 구현
 - [ ] onReset 기능 구현
 - [ ] onDelete 기능 구현
 - [ ] data validation 추가
