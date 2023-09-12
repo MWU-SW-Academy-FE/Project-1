@@ -3,7 +3,7 @@ class Calculator {
     $currentPreview
     isOperated
 
-    constructor($previousPreview, $currentPreview, isOperated) {
+    constructor($previousPreview, $currentPreview, $history ,isOperated) {
         this.$previousPreview = $previousPreview
         this.$currentPreview = $currentPreview
         this.isOperated = isOperated
@@ -43,6 +43,7 @@ class Calculator {
     }
 
     // 이전 텍스트에 완성된 계산식을 보여준 후, 현재 텍스트에 계산 결과를 나타냄
+    // + 계산식을 히스토리에 생성하기
     onEqual() {
         const [a, operation] = this.$previousPreview.textContent.split(' ')
         const b = this.$currentPreview.textContent
@@ -65,6 +66,12 @@ class Calculator {
             `
 
         this.isOperated = true
+
+        // 계산식들의 히스토리 생성
+        const $list = document.createElement('div')
+        $list.classList.add('history-text')
+        $list.textContent = ` ${a} ${operation} ${b} = ${this.$currentPreview.textContent}`
+        $history.appendChild($list)
     }
 
     onReset() {
@@ -80,6 +87,7 @@ class Calculator {
     }
 }
 
+
 // 값 표시
 const $previousPreview = document.querySelector('[data-previous-preview]')
 const $currentPreview = document.querySelector('[data-current-preview]')
@@ -92,7 +100,10 @@ const $operations = document.querySelectorAll('[data-btn-operation]')
 const $reset = document.querySelector('[data-btn-reset]')
 const $delete = document.querySelector('[data-btn-delete]')
 
-const cal = new Calculator($previousPreview, $currentPreview, false)
+// History
+const $history = document.querySelector('.history')
+
+const cal = new Calculator($previousPreview, $currentPreview, $history ,false)
 
 $numbers.forEach(($number) => {
     $number.addEventListener('click', (e) => {
