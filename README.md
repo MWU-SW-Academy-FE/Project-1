@@ -12,4 +12,4 @@
 - [x] onEqual 기능 구현
 - [x] onReset 기능 구현
 - [x] onDelete 기능 구현
-- [ ] data validation 추가
+- [x] data validation 추가
