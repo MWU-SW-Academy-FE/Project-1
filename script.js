@@ -3,7 +3,7 @@ class Calculator {
     $currentPreview
     isOperated
 
-    constructor($previousPreview, $currentPreview, $history ,isOperated) {
+    constructor($previousPreview, $currentPreview, isOperated) {
         this.$previousPreview = $previousPreview
         this.$currentPreview = $currentPreview
         this.isOperated = isOperated
@@ -29,21 +29,43 @@ class Calculator {
         }
     }
 
+    // 사칙연산 표시로 추가 연산 후 텍스트 변경까지 하는 함수
+    onLinearOperation(){   
+        const [a, operation] = this.$previousPreview.textContent.split(' ')
+        const b = this.$currentPreview.textContent
+
+        if(operation === '+') {
+            this.$previousPreview.textContent = `${Number(a) + Number(b)} +`
+        }
+        if(operation === '-') {
+            this.$previousPreview.textContent = `${Number(a) - Number(b)} -`
+        }
+        if(operation === '*') {
+            this.$previousPreview.textContent = `${Number(a) * Number(b)} *`
+        }
+        if(operation === '÷') {
+            b === '0' ? alert('0으로 나눌 수 없습니다!') : this.$previousPreview.textContent = `${Number(a) / Number(b)} ÷`
+        }
+    }
+
     // 사칙연산이 클릭되면 이전 텍스트에 해당 연산을 추가하여 올림, = 는 별도의 처리
+    // TODO: 3개 이상의 숫자 연산 가능하도록 구현
     onPressOperation(operation) {
         if(operation === '=') {
             this.onEqual()
             return
         }
+        // 최초 입력이면 자동으로 0 을 추가, 아니라면 3개 이상의 연속 연산
         this.$currentPreview.textContent === '' ? 
-        this.$previousPreview.textContent = "0 " + operation : 
-        this.$previousPreview.textContent = this.$currentPreview.textContent + " " + operation
+        this.$previousPreview.textContent = `0 + ${operation}` : 
+        this.$previousPreview.textContent = `${this.$currentPreview.textContent} ${operation}`
 
         this.isOperated = true
     }
 
     // 이전 텍스트에 완성된 계산식을 보여준 후, 현재 텍스트에 계산 결과를 나타냄
     // + 계산식을 히스토리에 생성하기
+    // TODO: 괄호가 포함된 연산 기능을 위한 추가적인 컴포넌트 필요
     onEqual() {
         const [a, operation] = this.$previousPreview.textContent.split(' ')
         const b = this.$currentPreview.textContent
@@ -103,7 +125,7 @@ const $delete = document.querySelector('[data-btn-delete]')
 // History
 const $history = document.querySelector('.history')
 
-const cal = new Calculator($previousPreview, $currentPreview, $history ,false)
+const cal = new Calculator($previousPreview, $currentPreview, false)
 
 $numbers.forEach(($number) => {
     $number.addEventListener('click', (e) => {
