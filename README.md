@@ -1,10 +1,16 @@
-# 계산기 앱
-## 프로젝트 소개 😎
-VanillaJS를 활용한 UI component 와 event handling 구현 프로젝트 입니다.
+## 계산기 만들기 해설
 
-## 이곳은 공개 Repo입니다.
-1. 이 repo를 fork한 뒤
-2. 여러분의 개인 Repo에서 프로젝트를 진행합니다. 
-3. 개발이 끝나면 이 Repo에 PR을 보내어 제출을 완료해주세요.
-4. 멘토님의 코드리뷰를 받습니다.
+### 1주차
+- [x] 기본 UI 완성
+- [x] data 속성 추가
+- [x] calculator class 만들기
+- [x] 계산기 기능 관련 DOM 셋팅
+- [x] 숫자 버튼 기능(onPressNumber) 출력 구현
+- [x] 사칙연산 버튼 기능(onPressOperation) 출력 구현
 
+### 2주차
+- [x] 데이터 벨리데이션 1차 추가
+- [x] onEqual 기능 구현
+- [x] onReset 기능 구현
+- [x] onDelete 기능 구현
+- [x] onEqual 리펙토링
