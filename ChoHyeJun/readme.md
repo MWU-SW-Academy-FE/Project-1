@@ -1,7 +1,16 @@
-## PR 날리는법
-0. Github 프로젝트 사이트
-1. Fork 본인 계정 레포에 복사본을 만든다
-2. VSC에서 폴더를 만들고 오픈을 한다. 터미널을 켠다
-3. git clone [저장소 주소] .
-4. 본인 이름으로 폴더를 만들고 아래에 소스코드를 넣는다.
-5. git add . // git commit -m "메세지" // git push origin main
+## 계산기 만들기 해설
+
+### 1주차
+- [x] 기본 UI 완성
+- [x] data 속성 추가
+- [x] calculator class 만들기
+- [x] 계산기 기능 관련 DOM 셋팅
+- [x] 숫자 버튼 기능(onPressNumber) 출력 구현
+- [x] 사칙연산 버튼 기능(onPressOperation) 출력 구현
+
+### 2주차
+- [x] 데이터 벨리데이션 1차 추가
+- [x] onEqual 기능 구현
+- [x] onReset 기능 구현
+- [x] onDelete 기능 구현
+- [x] onEqual 리팩토링
